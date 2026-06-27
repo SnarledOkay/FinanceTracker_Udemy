@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.no-right-padding{
+    padding-right: 0 !important;
+}
+.no-left-padding{
+    padding-left: 0 !important;
+}
+
+.results-block{
+    display: inline-block;
+}
+.alert{
+    width: 500px ;
+    height: auto ;
+    padding: 6px 12px;
+    display: flex;
+    justify-content: space-between;
+}

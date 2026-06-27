@@ -1,0 +1,24 @@
+<%= turbo_stream.update "flash-messages" do %>
+  <%= render "layouts/messages" %>
+<% end %>
+
+<%= turbo_stream.update "search-results" do %>
+  <% if @stock %>
+    <div class="card card-header results-block">
+      <strong>Symbol: </strong> <%= @stock.ticker %>
+      <strong>Name: </strong> <%= @stock.company_name %>
+      <strong>Price: </strong> <%= @stock.last_price %>
+      <% if current_user.can_track_stock?(@stock.ticker) %>
+        <%= link_to 'Add to Portfolio', user_stocks_path(user: current_user, ticker: @stock.ticker), class: "btn btn-xs btn-success", data: {turbo_method: :post} %>
+      <% else %>
+        <span class="badge badge-secondary">
+          <% if !current_user.under_stock_limit? %>
+            <%= "You are already tracking 10 stocks." %>
+          <% elsif current_user.stock_already_tracked?(@stock.ticker) %>
+            <%= "You are already tracking this stock." %>
+          <% end %>
+        </span>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
