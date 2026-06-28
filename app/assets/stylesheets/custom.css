@@ -21,3 +21,26 @@
     display: flex;
     justify-content: space-between;
 }
+
+.nav-item{
+    height: 100% ;
+    color: black ;
+}
+.nav-item:hover{
+    background-color: orange;
+}
+.nav-item:focus{
+    background-color: orange;
+}
+
+.dropdown-menu{
+    padding: 4px ;
+}
+.dropdown-divider{
+    margin-top: 4px ; 
+    margin-bottom: 4px ;
+}
+.dropdown-item:hover{
+    border-radius: 8%;
+    background-color: lightgray;
+}

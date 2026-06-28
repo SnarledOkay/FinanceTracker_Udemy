@@ -2,7 +2,7 @@
   <%= render "layouts/messages" %>
 <% end %>
 
-<%= turbo_stream.update "search-results" do %>
+<%= turbo_stream.update "stock-search-results" do %>
   <% if @stock %>
     <div class="card card-header results-block">
       <strong>Symbol: </strong> <%= @stock.ticker %>
