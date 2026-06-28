@@ -9,22 +9,26 @@
 			<table class="table">
 				<thead>
 					<tr>
+						<th scope="col">Name</th>
 						<th scope="col">Email</th>
-						<th scope="col">First Name</th>
-						<th scope="col">Last Name</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
 				<% @found_users.each do |found| %>
 					<tbody>
 						<tr>
-							<th scope="row"><%= found.email %></th>
-							<td><%= found.first_name %></td>
-							<td><%= found.last_name %></td>
+							<th scope="row"><%= found.full_name %></th>
+							<td><%= found.email %></td>
 							<% if current_user.friends.include?(found) %>
-								<td><%= link_to "Stop following", friendship_path(found), data: {turbo_method: :delete, turbo_confirm: "Do you want to stop following this user?"}, class: "btn btn-sm btn-warning" %></td>
+								<td>
+									<%= link_to "View profile", user_path(found), class: "btn btn-sm btn-success" %>
+									<%= link_to "Stop following", friendship_path(found), data: {turbo_method: :delete, turbo_confirm: "Do you want to stop following this user?"}, class: "btn btn-sm btn-warning" %>
+								</td>
 							<% else %>
-								<td><%= link_to "Follow user", friendships_path(friend_id: found.id), data: {turbo_method: :post}, class:"btn btn-sm btn-primary" %></td>
+								<td>
+									<%= link_to "View profile", user_path(found), class: "btn btn-sm btn-success" %>
+									<%= link_to "Follow user", friendships_path(friend_id: found.id), data: {turbo_method: :post}, class:"btn btn-sm btn-primary" %>
+								</td>
 							<% end %>
 						</tr>
 					</tbody>

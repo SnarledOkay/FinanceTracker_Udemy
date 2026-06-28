@@ -1,0 +1,30 @@
+<h2>User Details</h2>
+
+<div class="row">
+	<div class="col-9">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row"><%= @user.full_name %></th>
+					<td><%= @user.email %></td>
+					<td>
+						<% if current_user.friends.include? @user %>
+							<%= link_to "Stop following", friendship_path(@user), data: {turbo_method: :delete, turbo_confirm: "Do you want to stop following this user?"}, class:"btn btn-sm btn-warning" %>
+						<% else %>
+							<%= link_to "Follow user", friendships_path(friend_id: @user.id), data:{turbo_method: :post}, class:"btn btn-sm btn-primary" %>
+						<% end %>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<%= render "stocks/tracked_stocks" %>
